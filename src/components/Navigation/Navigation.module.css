@@ -1,0 +1,18 @@
+.nav {
+    border-bottom: 1px solid #646cffaa;
+}
+
+.nav-list {
+    display: flex;
+    gap: 40px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.nav-list:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.nav-list.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}

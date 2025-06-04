@@ -1,0 +1,12 @@
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 16px;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+p {
+    font-size: 20px;
+}
