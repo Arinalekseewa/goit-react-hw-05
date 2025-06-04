@@ -1,0 +1,13 @@
+.form-input {
+    background-color: transparent;
+    border: 1px solid #1a1a1a;
+    margin-right: 20px;
+}
+
+.form-input:hover {
+    border-color: #646cff;
+}
+
+h1 {
+    font-size: 20px;
+}

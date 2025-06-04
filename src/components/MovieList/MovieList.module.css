@@ -1,0 +1,35 @@
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+}
+
+.movie-item {
+    max-width: 300px;
+    text-align: center;
+}
+
+.poster {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 25px #ff4081aa;
+    transition: transform 0.3s ease;
+}
+
+.poster:hover {
+    transform: rotate(-2deg) scale(1.05);
+}
+
+.title {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ff4081aa;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}

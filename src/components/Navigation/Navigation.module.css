@@ -1,5 +1,5 @@
 .nav {
-    border-bottom: 1px solid #646cffaa;
+    border-bottom: 1px dashed #ff4081;
 }
 
 .nav-list {
@@ -10,9 +10,9 @@
 }
 
 .nav-list:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+    filter: drop-shadow(0 0 2em #ff4081);
 }
 
 .nav-list.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+    filter: drop-shadow(0 0 2em #ff80ab);
 }

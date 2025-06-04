@@ -1,20 +1,29 @@
-import { useEffect, useState } from 'react';
-import { fetcher } from '../../utils/fetcher';
-import MovieList from '../../components/MovieList/MovieList';
+import { Link, useLocation } from 'react-router-dom';
+import styles from './MovieList.module.css';
 
-export default function HomePage() {
-  const [movies, setMovies] = useState([]);
+const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 
-  useEffect(() => {
-    fetcher('/trending/movie/day')
-      .then(data => setMovies(data.results))
-      .catch(console.error);
-  }, []);
-
+export default function MovieList({ movies }) {
+  const location = useLocation();
+  
   return (
-    <main>
-      <h1>Trending today</h1>
-      <MovieList movies={movies} />
-    </main>
+    <ul className={styles['movie-list']}>
+      {movies.map(({ id, title, poster_path }) => (
+        <li key={id} className={styles['movie-item']}>
+          <Link to={`/movies/${id}`} state={{ from: location }} className={styles['link']}>
+            <img
+              src={
+                poster_path
+                  ? `${IMG_BASE}${poster_path}`
+                  : 'https://via.placeholder.com/300x450?text=No+Image'
+              }
+              alt={title}
+              className={styles['poster']}
+            />
+            <p className={styles['title']}>{title}</p>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

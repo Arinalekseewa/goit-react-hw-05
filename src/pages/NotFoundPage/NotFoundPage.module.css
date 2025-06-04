@@ -1,0 +1,46 @@
+.not-found-container {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f0f0f0;
+}
+
+.robot img {
+    width: 180px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+p {
+    font-size: 1.1rem;
+    margin: 0.3rem 0;
+}
+
+.back-home-btn {
+    margin-top: 2rem;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #646cff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.back-home-btn:hover {
+    background-color: #535bf2;
+    color: white;
+}
