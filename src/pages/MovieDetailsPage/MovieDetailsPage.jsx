@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetcher } from '../../utils/fetcher';
 import styles from './MovieDetailsPage.module.css';
+
+const MovieCast = lazy(() => import('../../components/MovieCast/MovieCast'));
+const MovieReviews = lazy(() => import('../../components/MovieReviews/MovieReviews'));
 
 const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 
@@ -12,7 +15,7 @@ export default function MovieDetailsPage() {
   const backLink = location.state?.from ?? '/';
 
   useEffect(() => {
-    fetcher(`/movie/${movieId}?language=en-US`)
+    fetcher(`/movie/${movieId}?language=uk-UA`)
       .then(setMovie)
       .catch(console.error);
   }, [movieId]);
@@ -52,18 +55,20 @@ export default function MovieDetailsPage() {
   <h2>Додаткова інформація 🍿</h2>
   <ul className={styles['info-links']}>
     <li>
-      <Link to="cast" className={styles['info-link']}>
+      <Link to={`/movies/${movieId}/cast`} className={styles['info-link']}>
         🎭 Акторський склад
       </Link>
     </li>
     <li>
-      <Link to="reviews" className={styles['info-link']}>
+      <Link to={`/movies/${movieId}/reviews`} className={styles['info-link']}>
         📝 Огляди
       </Link>
     </li>
   </ul>
 
-  <Outlet />
+  <Suspense fallback={<p>Завантажуємо магію кіно...</p>}>
+          <Outlet />
+        </Suspense>
 </div>
     </main>
   );

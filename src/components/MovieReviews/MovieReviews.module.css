@@ -1,0 +1,51 @@
+.reviewList {
+    display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
+        list-style: none;
+        padding: 0;
+        justify-content: center;
+        margin-top: 40px;
+}
+
+p {
+    font-size: 14px;
+    text-align: left;
+    padding: 10px 10px 5px 10px;
+    margin: 0;
+}
+
+h4 {
+    margin-bottom: 0px;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.reviewItem {
+    min-width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 0 25px #ff4081aa;
+        gap: 10px;
+}
+
+.toggleButton {
+    background: none;
+    border: none;
+    color: #0077cc;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.toggleButton:hover {
+    text-decoration: underline;
+}
+
+.reviewContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+        

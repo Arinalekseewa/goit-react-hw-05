@@ -6,7 +6,7 @@ export default function Navigation() {
     <header className={styles['nav']}>
       <nav className={styles['nav-list']}>
         <NavLink to="/" className={styles.link}>
-          Netflix хто?
+          Х'юстон, ми вдома
         </NavLink>
         <NavLink to="/movies" className={styles.link}>
           🎥Кіно-лабіринт🎥
