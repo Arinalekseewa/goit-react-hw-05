@@ -1,31 +1,45 @@
-import { useState } from 'react';
-import { fetcher } from '../../utils/fetcher';
-import styles from './MoviesPage.module.css';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 import MovieList from '../../components/MovieList/MovieList';
-
-const BASE_URL = 'https://api.themoviedb.org/3';
+import styles from './MoviesPage.module.css';
 
 export default function MoviesPage() {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!query.trim()) return;
+  useEffect(() => {
+    if (!query) return;
 
-    fetcher(`/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`)
-      .then(data => setMovies(data.results))
-      .catch(console.error);
+    axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&language=uk-UA`, {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYzc0ZDlhY2NiYzNjNTk5YWJkNGRhODQ3ZDVlZDI1NyIsIm5iZiI6MTc0OTAyOTk5OS4zMzksInN1YiI6IjY4NDAxNDZmZDc2NDA2M2Y1MmFkOGE5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7JCxN7Du0QQFCsUknFB0MAfCRkizbanpuIrLtYpX6Bc',
+      },
+    })
+    .then(res => setMovies(res.data.results))
+    .catch(console.error);
+  }, [query]);
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const value = evt.target.elements.query.value.trim();
+    if (value) {
+      setSearchParams({ query: value });
+    } else {
+      setSearchParams({});
+    }
   };
 
   return (
-    <main>
-      <h1>🧭 Подорож у світ кіно починається тут</h1>
+    <main className={styles.page}>
+      <h1>🎬 Подорож у світ кіно починається тут</h1>
 
-      <form onSubmit={handleSubmit} className={styles['search-form']}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          type="text"
+          name="query"
+          defaultValue={query}
           placeholder="Що дивимось сьогодні?"
           className={styles['form-input']}
         />
@@ -34,7 +48,9 @@ export default function MoviesPage() {
         </button>
       </form>
 
-      <MovieList movies={movies} />
+      {movies.length > 0 && (
+        <MovieList movies={movies} />
+      )}
     </main>
   );
 }

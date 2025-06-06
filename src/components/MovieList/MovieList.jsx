@@ -15,7 +15,7 @@ export default function MovieList({ movies }) {
               src={
                 poster_path
                   ? `${IMG_BASE}${poster_path}`
-                  : 'https://via.placeholder.com/300x450?text=No+Image'
+                  : 'https://placehold.co/300x450/000000/FF0000?text=Who+stole+the+poster%3F'
               }
               alt={title}
               className={styles['poster']}
